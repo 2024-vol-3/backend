@@ -32,4 +32,12 @@ class GroupsController < ApplicationController
         head :no_content
     end
     
+    private
+    def set_group
+        @group = Group.find(params[:id])
+    end
+
+    def group_params
+        params.require(:group).permit( :group_name)
+    end
 end
