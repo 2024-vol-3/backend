@@ -1,2 +1,4 @@
 class Issue < ApplicationRecord
-end
+    belongs_to :group
+  end
+  

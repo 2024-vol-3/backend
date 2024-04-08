@@ -38,7 +38,7 @@ class IssuesController < ApplicationController
       end
   
       def set_issue
-        @issue = @group.issues.find(params[:id])
+        @issue = @group.issues.find(params[:issue_id])
       end
   
       def issue_params
