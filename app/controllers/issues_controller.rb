@@ -1,6 +1,6 @@
 class IssuesController < ApplicationController
     before_action :set_group
-    before_action :set_issue, only: [:show,  :update, :destroy]
+    before_action :set_issue, only: [:show, :update, :destroy]
   
     def index
       @issues = @group.issues
