@@ -50,7 +50,7 @@ class TagsController < ApplicationController
       end
   
       def set_tag
-        @tag = @issue.tags.find(params[:id])
+        @tag = @issue.tags.find(params[:tag_id])
       end
   
       def tag_params
