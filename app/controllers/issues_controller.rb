@@ -34,11 +34,11 @@ class IssuesController < ApplicationController
   
     private
       def set_group
-        @group = group.find(params[:group_id])
+        @group = group.find(params[:id])
       end
   
       def set_issue
-        @issue = @group.issues.find(params[:issue_id])
+        @issue = @group.issues.find(params[:id])
       end
   
       def issue_params

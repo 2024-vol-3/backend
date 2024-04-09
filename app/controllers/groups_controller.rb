@@ -34,7 +34,7 @@ class GroupsController < ApplicationController
     
     private
     def set_group
-        @group = Group.find(params[:group_id])
+        @group = Group.find(params[:id])
     end
 
     def group_params

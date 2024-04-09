@@ -19,8 +19,8 @@ class DaysController < ApplicationController
       
         # Issueを設定
         def set_issue
-          group = Group.find(params[:group_id])
-          @issue = group.issues.find(params[:issue_id])
+          group = Group.find(params[:id])
+          @issue = group.issues.find(params[:id])
         end
       
         # 特定の日付からの経過時間を計算し、条件に一致するか確認
