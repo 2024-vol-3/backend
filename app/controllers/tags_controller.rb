@@ -42,15 +42,15 @@ class TagsController < ApplicationController
     private
   
       def set_group
-        @group = group.find(params[:group_id])
+        @group = group.find(params[:id])
       end
   
       def set_issue
-        @issue = @group.issues.find(params[:issue_id])
+        @issue = @group.issues.find(params[:id])
       end
   
       def set_tag
-        @tag = @issue.tags.find(params[:tag_id])
+        @tag = @issue.tags.find(params[:id])
       end
   
       def tag_params

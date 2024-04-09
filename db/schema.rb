@@ -11,7 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2024_04_08_113356) do
-  create_table "groups", primary_key: "group_id", id: :string, force: :cascade do |t|
+  create_table "groups", force: :cascade do |t|
     t.string "group_name"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_08_113356) do
     t.index ["user_id"], name: "index_groups_on_user_id"
   end
 
-  create_table "issues", primary_key: "issue_id", id: :string, force: :cascade do |t|
+  create_table "issues", force: :cascade do |t|
     t.string "title"
     t.text "contents"
     t.boolean "day_fragment"
@@ -29,7 +29,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_08_113356) do
     t.index ["group_id"], name: "index_issues_on_group_id"
   end
 
-  create_table "tags", primary_key: "tag_id", id: :string, force: :cascade do |t|
+  create_table "tags", force: :cascade do |t|
     t.integer "tag_count"
     t.integer "issue_id", null: false
     t.datetime "created_at", null: false
@@ -37,7 +37,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_08_113356) do
     t.index ["issue_id"], name: "index_tags_on_issue_id"
   end
 
-  create_table "users", primary_key: "user_id", id: :string, force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "user_name"
     t.string "user_icon"
     t.datetime "created_at", null: false
