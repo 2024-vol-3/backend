@@ -15,6 +15,15 @@ class DaysController < ApplicationController
           end
         end
       
+        # day_fragmentがtrueなら更新
+        def update
+          if @issue.update(day_fragment)
+            render json: @issue
+          else
+            render json: @issue.errors, status: :unprocessable_entity
+          end
+        end
+
         private
       
         # Issueを設定
