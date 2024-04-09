@@ -1,20 +1,30 @@
 class DaysController < ApplicationController
         before_action :set_issue
-      
-        # 作成から1日後、1週間後、2週間後、4週間後の場合にtrueを返す
-        def index
-          render json: { day_fragment: day_fragment?(@issue.created_at) }
-        end
+        before_action :day_fragment_params only:[:update]
       
         # day_fragmentがtrueのIssueのみを取得
         def show
-          if day_fragment?(@issue.created_at)
-            render json: @issue
+          # day_fragment?(@issue.created_at)と@issue.day_fragmentが両方とも trueの時にtrueを返す
+          if day_fragment?(@issue.created_at) && @issue.day_fragment == true
+            render true
+          # day_fragment?(@issue.created_at)もしくは@issue.day_fragmentが falseの時にfalseを返す
+          else if day_fragment?(@issue.created_at) || @issue.day_fragment == false
+            render false
           else
-            render json: { error: 'This issue does not have a true day fragment.' }, status: :not_found
+            render "error"
           end
         end
+        
       
+        # day_fragmentがtrueなら更新
+        def update
+          if @issue.update(day_fragment_params)
+            render json: @issue
+          else
+            render json: @issue.errors, status: :unprocessable_entity
+          end
+        end
+
         private
       
         # Issueを設定
@@ -31,6 +41,10 @@ class DaysController < ApplicationController
             (now - created_at).to_i == time_period.to_i
             #to_iメソッドは、数値を整数に変換するメソッド
           end
+        end
+
+        def day_fragment_params
+          params.require(:issue).permit( :day_fragment)
         end
    
 end
