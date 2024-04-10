@@ -1,3 +1,3 @@
 class Tag < ApplicationRecord
-    belongs_to :issues
+    belongs_to :issue
 end

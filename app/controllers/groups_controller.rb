@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+    skip_before_action :verify_authenticity_token, only: [:create, :update]
     before_action :set_group, only: [:show, :update, :destroy]
 
     def index

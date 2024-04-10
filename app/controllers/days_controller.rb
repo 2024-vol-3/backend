@@ -1,4 +1,6 @@
 class DaysController < ApplicationController
+         skip_before_action :verify_authenticity_token, only: [:create, :update]
+
         before_action :set_issue
         before_action :day_fragment_params only:[:update]
       

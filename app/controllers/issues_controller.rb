@@ -1,4 +1,6 @@
 class IssuesController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:create, :update]
+
     before_action :set_group
     before_action :set_issue, only: [:show, :update, :destroy]
   
