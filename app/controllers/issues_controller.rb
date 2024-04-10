@@ -9,15 +9,18 @@ class IssuesController < ApplicationController
     end
   
     def show
+      render json: @issue
     end
   
 
     def create
-      @issue = @group.issues.build(issue_params)
+      @issue = @group.issues.create(issue_params)
+      #成功した場合
       if @issue.save
-        redirect_to [@group, @issue], notice: 'Issue was successfully created.'
+        head :created
+
       else
-        render :new
+        render json: @issue.errors, status: :unprocessable_entity
       end
     end
   
@@ -36,7 +39,7 @@ class IssuesController < ApplicationController
   
     private
       def set_group
-        @group = group.find(params[:id])
+        @group = Group.find(params[:group_id])
       end
   
       def set_issue

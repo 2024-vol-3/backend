@@ -2,7 +2,7 @@ class DaysController < ApplicationController
          skip_before_action :verify_authenticity_token, only: [:create, :update]
 
         before_action :set_issue
-        before_action :day_fragment_params only:[:update]
+        before_action :day_fragment_params, only:[:update]
       
         # day_fragmentがtrueのIssueのみを取得
         def show
@@ -10,7 +10,7 @@ class DaysController < ApplicationController
           if day_fragment?(@issue.created_at) && @issue.day_fragment == true
             render true
           # day_fragment?(@issue.created_at)もしくは@issue.day_fragmentが falseの時にfalseを返す
-          else if day_fragment?(@issue.created_at) || @issue.day_fragment == false
+          elsif day_fragment?(@issue.created_at) || @issue.day_fragment == false
             render false
           else
             render "error"

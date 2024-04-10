@@ -16,8 +16,8 @@ Rails.application.routes.draw do
 
 
 #/groups/[group_id]/issues/[issue_id]/tag 
-  resources :groups do
-    resources :issues do
+  resources :groups ,only: [:index,:create,:show, :update, :destroy] do
+    resources :issues ,only: [:index,:create,:show, :update, :destroy] do
       resources :tags ,only: [:index,:create,:show, :update, :destroy]
     end
   end
