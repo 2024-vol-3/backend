@@ -6,6 +6,7 @@ class IssuesController < ApplicationController
   
     def index
       @issues = @group.issues
+      render json: @issues
     end
   
     def show
